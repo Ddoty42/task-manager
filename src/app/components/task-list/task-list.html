@@ -1,0 +1,120 @@
+<!-- Filter tabs -->
+
+<div class="flex gap-1 mb-6 bg-gray-100 rounded-lg p-1">
+    @for (f of filterOptions; track f){
+    <button 
+    (click)="setFilter(f)" 
+    [class]="'flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ' 
+    + (filter=== f ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700')">
+        {{ f | titlecase }}
+    </button>
+}
+</div>
+
+<!-- Task Count -->
+<p class="text-sm text-gray-500 mb-4">
+  {{ activeCount }} task{{ activeCount !== 1 ? "s" : "" }} remaining
+</p>
+
+<!-- Task Cards -->
+<div class="space-y-3">
+    @for (task of tasks; track task.id){
+  <div
+    class="group bg-white border border-gray-200 rounded-xl p-4 transition-all hover:shadow-md"
+    [class.opacity-60]="task.completed"
+  >
+    <div class="flex items-start gap-3">
+      <!-- Checkbox -->
+      <button
+        (click)="toggleTask(task.id)"
+        class="mt-0.5 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors shrink-0"
+        [class]="
+          task.completed
+            ? 'bg-emerald-500 border-emerald-500'
+            : 'border-gray-300 hover:border-emerald-400'
+        "
+      >
+      @if (task.completed){
+        <svg
+          class="w-3 h-3 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="3"
+            d="M5 13l4 4L19 7"
+          />
+        </svg>
+    }
+      </button>
+    
+      <!-- Task Content -->
+      <div class="flex-1 min-w-0">
+        <h3
+          class="font-semibold text-gray-900"
+          [class.line-through]="task.completed"
+          [class.text-gray-400]="task.completed"
+        >
+          {{ task.title }}
+        </h3>
+        <p class="text-sm text-gray-500 mt-0.5">{{ task.description }}</p>
+        <div class="flex items-center gap-2 mt-2">
+          <span
+            class="text-xs font-medium px-2 py-0.5 rounded-full border"
+            [class]="getPriorityClasses(task.priority)"
+          >
+            {{ task.priority }}
+          </span>
+          <span class="text-xs text-gray-400">
+            {{ task.createdAt | date : "MMM d, y" }}
+          </span>
+        </div>
+      </div>
+    
+      <!-- Delete Button -->
+      <button
+        (click)="deleteTask(task.id)"
+        class="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 transition-all p-1"
+      >
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+    }
+  <!-- Empty State -->
+   @empty{
+  <div class="text-center py-12 text-gray-400"
+  >
+    <svg
+      class="w-12 h-12 mx-auto mb-3 opacity-50"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.5"
+        d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+      />
+    </svg>
+    <p class="font-medium">No tasks here</p>
+    <p class="text-sm">Add one above to get started!</p>
+  </div>
+}
+</div>
