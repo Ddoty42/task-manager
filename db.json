@@ -1,14 +1,6 @@
 {
   "tasks": [
     {
-      "id": "5",
-      "title": "Buy a new PC",
-      "description": "Get a new PC, it's time",
-      "priority": "high",
-      "completed": true,
-      "createdAt": "2026-03-10"
-    },
-    {
       "id": "a028",
       "title": "Add Settings",
       "description": "Add settings icon that allows the user to change font, change language, and set theme, dark mode; light mode",
