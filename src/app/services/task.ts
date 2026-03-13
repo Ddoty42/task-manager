@@ -1,94 +1,43 @@
 import { Injectable } from '@angular/core';
-import { Task } from "../models/task";
+import { HttpClient } from '@angular/common/http';
+import { Task } from '../models/task';
+import { Observable, Subject, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
-  private tasks: Task[] = [
-    {
-      id: 1,
-      title: "Learn Angular Basics",
-      description: "Complete the official Angular Tutorial",
-      priority: "high",
-      completed: false,
-      createdAt: new Date("03-10-2026")
-    },
-    {
-      id: 2,
-      title: "Become Senior Level",
-      description: "Grind until you rise through the ranks",
-      priority: "low",
-      completed: false,
-      createdAt: new Date("03-10-2026")
-    },
-    {
-      id: 3,
-      title: "Get a friend for Milo",
-      description: "After buying a car, get a friend for Milo. He's lonely.",
-      priority: "medium",
-      completed: false,
-      createdAt: new Date("03-10-2026")
-    },
-    {
-      id: 4,
-      title: "Buy a new car",
-      description: "After buying a car, get a friend for Milo. He's lonely.",
-      priority: "high",
-      completed: false,
-      createdAt: new Date("03-10-2026")
-    },
-    {
-      id: 5,
-      title: "Buy a new PC",
-      description: "Get a new PC, it's time",
-      priority: "high",
-      completed: true,
-      createdAt: new Date("03-10-2026")
-    },
-  ]
-  private nextId = 6;
+  private apiUrl = 'http://localhost:3000/tasks';
+  tasksChanged = new Subject<void>();
 
-//READ get all tasks
-  getTasks(): Task[]{
-    return this.tasks;
+  constructor(private http: HttpClient) {}
+
+  getTasks(): Observable<Task[]> {
+    return this.http.get<Task[]>(this.apiUrl);
   }
 
-//WRITE
-addTask(title: string, description: string, priority: Task["priority"]): void {
-  this.tasks.push({
-    id: this.nextId++,
+  addTask(title: string, description: string, priority: Task['priority']): Observable<Task> {
+  const task = {
     title,
     description,
     priority,
     completed: false,
-    createdAt: new Date()
-  });
+    createdAt: new Date().toISOString(),
+  };
+  return this.http.post<Task>(this.apiUrl, task).pipe(
+    tap(() => this.tasksChanged.next())
+  );
 }
 
-//UPDATE - Completed Toggle
-  toggleTask(id: number): void {
-    const task = this.tasks.find((t) => t.id === id);
-    if (task) {
-      task.completed = !task.completed;
-    }
-  }
-
-//DELETE 
-deleteTask(id: number): void {
-this.tasks = this.tasks.filter((t) => t.id !== id);
-
+toggleTask(id: number, completed: boolean): Observable<Task> {
+  return this.http.patch<Task>(`${this.apiUrl}/${id}`, { completed }).pipe(
+    tap(() => this.tasksChanged.next())
+  );
 }
 
-
+deleteTask(id: number): Observable<void> {
+  return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
+    tap(() => this.tasksChanged.next())
+  );
 }
-
-
-
-
-
-
-
-
-
- 
+}

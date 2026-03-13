@@ -12,10 +12,33 @@
 </div>
 
 <!-- Task Count -->
+ @if (activeCount === 0){
+  <p class="text-sm text-emerald-800 mb-4">You've completed all of your tasks!</p>
+ }@else{
 <p class="text-sm text-gray-500 mb-4">
   {{ activeCount }} task{{ activeCount !== 1 ? "s" : "" }} remaining
 </p>
-
+}
+<!-- Select All Bar -->
+<div class="flex items-center justify-between mb-3">
+  <label class="flex items-center gap-2 cursor-pointer">
+    <input
+      type="checkbox"
+      [checked]="allSelected"
+      (change)="selectAll()"
+      class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+    />
+    <span class="text-sm text-gray-600">Select All</span>
+  </label>
+   <button
+      (click)="bulkDelete()"
+      class="text-sm font-medium text-white bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-lg transition-colors"
+      [class.invisible]="!hasSelection"
+    >
+      Delete Selected ({{ selectedIds.size }})
+    </button>
+  
+</div>
 <!-- Task Cards -->
 <div class="space-y-3">
     @for (task of tasks; track task.id){
@@ -25,6 +48,13 @@
   >
     <div class="flex items-start gap-3">
       <!-- Checkbox -->
+       <!-- Selection Checkbox -->
+<input
+  type="checkbox"
+  [checked]="selectedIds.has(task.id)"
+  (change)="toggleSelect(task.id)"
+  class="mt-1 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 cursor-pointer"
+/>
       <button
         (click)="toggleTask(task.id)"
         class="mt-0.5 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors shrink-0"
@@ -76,7 +106,7 @@
     
       <!-- Delete Button -->
       <button
-        (click)="deleteTask(task.id)"
+        (click)="confirmDelete(task)"
         class="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 transition-all p-1"
       >
         <svg
@@ -115,6 +145,38 @@
     </svg>
     <p class="font-medium">No tasks here</p>
     <p class="text-sm">Add one above to get started!</p>
+  </div>
+}
+@if (taskToDelete) {
+  <!-- Backdrop -->
+  <div
+    class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+    (click)="cancelDelete()"
+  >
+    <!-- Modal -->
+    <div
+      class="bg-white rounded-xl p-6 max-w-sm mx-4 shadow-xl"
+      (click)="$event.stopPropagation()"
+    >
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">Delete Task?</h3>
+      <p class="text-sm text-gray-500 mb-5">
+        Are you sure you want to delete "{{ taskToDelete.title }}"? This can't be undone.
+      </p>
+      <div class="flex gap-3">
+        <button
+          (click)="cancelDelete()"
+          class="flex-1 py-2 px-4 rounded-lg border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+        >
+          Cancel
+        </button>
+        <button
+          (click)="confirmAndDelete()"
+          class="flex-1 py-2 px-4 rounded-lg bg-red-600 text-white text-sm font-medium hover:bg-red-700 transition-colors"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
   </div>
 }
 </div>

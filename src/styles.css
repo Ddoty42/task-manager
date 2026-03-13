@@ -1,3 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+.p-toast-message-success {
+  background-color: #065f46 !important;
+  color: white !important;
+}
+
+.p-toast-message-success .p-toast-detail {
+  color: white !important;
+}
+
+.p-toast-message-success .p-toast-summary {
+  color: white !important;
+}
+
+input, textarea {
+  caret-color: black !important;
+}
+
+input, textarea, button, select {
+  font-family: inherit !important;
+  font-size: inherit !important;
+  color: black !important;
+}
+
+::placeholder {
+  color: #9ca3af !important;
+}

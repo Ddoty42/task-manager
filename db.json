@@ -1,0 +1,149 @@
+{
+  "tasks": [
+    {
+      "id": "5",
+      "title": "Buy a new PC",
+      "description": "Get a new PC, it's time",
+      "priority": "high",
+      "completed": true,
+      "createdAt": "2026-03-10"
+    },
+    {
+      "id": "a028",
+      "title": "Add Settings",
+      "description": "Add settings icon that allows the user to change font, change language, and set theme, dark mode; light mode",
+      "priority": "high",
+      "completed": false,
+      "createdAt": "2026-03-13T01:06:48.073Z"
+    },
+    {
+      "id": "6c98",
+      "title": "Add Task Type",
+      "description": "Add a type, Housework, Homework, Work, Personal, Other",
+      "priority": "medium",
+      "completed": false,
+      "createdAt": "2026-03-13T01:08:31.299Z"
+    },
+    {
+      "id": "12a4",
+      "title": "Add an Edit",
+      "description": "Add the ability to edit a task\n-add a pencil next to the delete icon\n-pops Edit Task modal\n-Success toast message when edit is successful\n-Changes save without refreshing",
+      "priority": "high",
+      "completed": false,
+      "createdAt": "2026-03-13T01:10:10.379Z"
+    },
+    {
+      "id": "24dc",
+      "title": "Add Autofocus",
+      "description": "Add autofocus when opening the new task modal",
+      "priority": "medium",
+      "completed": true,
+      "createdAt": "2026-03-13T01:11:14.498Z"
+    },
+    {
+      "id": "602d",
+      "title": "Add Select All For Completion",
+      "description": "Add A Mark As Complete option alongside the Delete",
+      "priority": "high",
+      "completed": false,
+      "createdAt": "2026-03-13T01:11:44.745Z"
+    },
+    {
+      "id": "244f",
+      "title": "Remove Special Characters from Task Title",
+      "description": "Prevent the user from using special characters in the task title, allowed in the description",
+      "priority": "low",
+      "completed": true,
+      "createdAt": "2026-03-13T01:12:20.858Z"
+    },
+    {
+      "id": "0d00",
+      "title": "Delete Confirmation",
+      "description": "Create a delete confirmation so the user can confirm/deny deleting a task",
+      "priority": "high",
+      "completed": true,
+      "createdAt": "2026-03-13T01:14:38.700Z"
+    },
+    {
+      "id": "c0e4",
+      "title": "Add Filters",
+      "description": "Add date filter, priority filter, type filter",
+      "priority": "low",
+      "completed": false,
+      "createdAt": "2026-03-13T01:17:51.112Z"
+    },
+    {
+      "id": "3acb",
+      "title": "Fix Modal Exiting On Click",
+      "description": "Modal is exiting when clicking in the modal, add .stopPropagation()",
+      "priority": "high",
+      "completed": true,
+      "createdAt": "2026-03-13T01:19:38.330Z"
+    },
+    {
+      "id": "abd1",
+      "title": "Add Success Toast Messages",
+      "description": "Use prime.ng toast messages on successful add, deletion",
+      "priority": "high",
+      "completed": true,
+      "createdAt": "2026-03-13T01:20:11.894Z"
+    },
+    {
+      "id": "53ab",
+      "title": "Add Selection on task",
+      "description": "Remove the selector bubble, allow user to select anywhere in the card",
+      "priority": "medium",
+      "completed": false,
+      "createdAt": "2026-03-13T01:21:07.758Z"
+    },
+    {
+      "id": "d124",
+      "title": "Add drag and drop to reorder tasks",
+      "description": "Add the ability to drag and drop tasks",
+      "priority": "low",
+      "completed": false,
+      "createdAt": "2026-03-13T01:22:33.179Z"
+    },
+    {
+      "id": "2d0c",
+      "title": "Fix Clicking outside modal",
+      "description": "Fix clicking outside of modal to exit, force user to hit cancel or the X",
+      "priority": "medium",
+      "completed": false,
+      "createdAt": "2026-03-13T01:27:15.184Z"
+    },
+    {
+      "id": "3f13",
+      "title": "Delete Completed Task",
+      "description": "Force user to mark the completed task as incomplete before deleting, send red toast message that states \"ERROR: Mark task as incomplete before deleting\" pop message when user hits the delete can, or if a multi selection has a complete task within it",
+      "priority": "low",
+      "completed": false,
+      "createdAt": "2026-03-13T01:30:36.256Z"
+    },
+    {
+      "id": "945b",
+      "title": "Add Show/Hide Completed Tasks in All Tasks",
+      "description": "Add a toggle that shows/hides completed tasks in All Tasks",
+      "priority": "medium",
+      "completed": false,
+      "createdAt": "2026-03-13T01:34:15.244Z"
+    },
+    {
+      "id": "876e",
+      "title": "Backend",
+      "description": "Add ASP.NET backend, implement security, allow users to have their own tasks",
+      "priority": "low",
+      "completed": false,
+      "createdAt": "2026-03-13T01:54:09.882Z"
+    },
+    {
+      "id": "fc09",
+      "title": "Fix Modal Shrink",
+      "description": "User can shrink description box too much",
+      "priority": "medium",
+      "completed": true,
+      "createdAt": "2026-03-13T02:15:08.926Z"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
