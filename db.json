@@ -135,6 +135,14 @@
       "priority": "medium",
       "completed": true,
       "createdAt": "2026-03-13T02:15:08.926Z"
+    },
+    {
+      "id": "395e",
+      "title": "Refresh upon adding task",
+      "description": "When adding a task, refresh the list",
+      "priority": "medium",
+      "completed": true,
+      "createdAt": "2026-03-13T02:41:34.022Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
