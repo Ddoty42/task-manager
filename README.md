@@ -16,7 +16,22 @@ json-server --watch db.json
 ```
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
+If db.json is missing, add it to the src folder, sample task:
 
+```bash
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Sample Task",
+      "description": "This is a sample task",
+      "priority": "medium",
+      "completed": false,
+      "createdAt": "2026-03-10"
+    }
+  ]
+}
+```
 
 ## Code scaffolding
 
