@@ -9,8 +9,14 @@ To start a local development server, run:
 ```bash
 ng serve
 ```
+This application has a local JSON server that contains the tasks, open a separate terminal within your IDE and run:
 
+```bash
+json-server --watch db.json
+```
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+
+
 
 ## Code scaffolding
 
