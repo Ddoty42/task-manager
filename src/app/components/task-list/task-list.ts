@@ -85,6 +85,7 @@ export class TaskList {
 
   deleteTask(id: number): void {
     this.taskService.deleteTask(id).subscribe(() => {
+      this.cdr.detectChanges();
       this.loadTasks();
     });
   }
@@ -115,6 +116,7 @@ export class TaskList {
       const title = this.taskToDelete.title;
       this.taskService.deleteTask(this.taskToDelete.id).subscribe(() => {
         this.taskToDelete = null;
+        this.cdr.detectChanges();
         this.loadTasks();
         this.messageService.add({
           severity: 'success',
