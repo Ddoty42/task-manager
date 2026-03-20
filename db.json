@@ -4,7 +4,7 @@
       "id": "a028",
       "title": "Add Settings",
       "description": "Add settings icon that allows the user to change font, change language, and set theme, dark mode; light mode",
-      "priority": "high",
+      "priority": "medium",
       "completed": false,
       "createdAt": "2026-03-13T01:06:48.073Z"
     },
@@ -21,7 +21,7 @@
       "title": "Add an Edit",
       "description": "Add the ability to edit a task\n-add a pencil next to the delete icon\n-pops Edit Task modal\n-Success toast message when edit is successful\n-Changes save without refreshing",
       "priority": "high",
-      "completed": false,
+      "completed": true,
       "createdAt": "2026-03-13T01:10:10.379Z"
     },
     {
@@ -113,14 +113,6 @@
       "createdAt": "2026-03-13T01:30:36.256Z"
     },
     {
-      "id": "945b",
-      "title": "Add Show/Hide Completed Tasks in All Tasks",
-      "description": "Add a toggle that shows/hides completed tasks in All Tasks",
-      "priority": "medium",
-      "completed": false,
-      "createdAt": "2026-03-13T01:34:15.244Z"
-    },
-    {
       "id": "876e",
       "title": "Backend",
       "description": "Add ASP.NET backend, implement security, allow users to have their own tasks",
@@ -143,6 +135,14 @@
       "priority": "medium",
       "completed": true,
       "createdAt": "2026-03-13T02:41:34.022Z"
+    },
+    {
+      "id": "50f4",
+      "title": "BUG Tasks Refreshing After Switching Tabs",
+      "description": "After marking complete and switching tabs, the tasks are being reverted back to incomplete\n\nSolution: Add loadTasks(); in setFilter in task-list.html",
+      "priority": "medium",
+      "completed": true,
+      "createdAt": "2026-03-20T13:50:53.326Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

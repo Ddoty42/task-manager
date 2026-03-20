@@ -40,4 +40,10 @@ deleteTask(id: number): Observable<void> {
     tap(() => this.tasksChanged.next())
   );
 }
+
+updateTask(id: number, title: string, description: string, priority: Task['priority']): Observable<Task>{
+    return this.http.patch<Task>(`${this.apiUrl}/${id}`, {title, description, priority}).pipe(tap(() => this.tasksChanged.next())
+    );
+}
+
 }

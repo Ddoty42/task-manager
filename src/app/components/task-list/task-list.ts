@@ -1,12 +1,13 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 import { Task } from '../../models/task';
 import { TaskService } from '../../services/task';
 import { MessageService } from 'primeng/api';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-task-list',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, TitleCasePipe],
   templateUrl: './task-list.html',
   styleUrl: './task-list.css',
 })
@@ -16,6 +17,8 @@ export class TaskList {
   filterOptions: ("all" | "active" | "completed")[] = ["all", "active", "completed"];
   selectedIds: Set<number> = new Set();
   taskToDelete: Task | null = null;
+
+  priorityOptions: ("low" | "medium" | "high")[] = ["low", "medium", "high"];
 
   constructor(
     private taskService: TaskService,
@@ -50,9 +53,14 @@ export class TaskList {
     return this.allTasks.filter((t) => !t.completed).length;
   }
 
+  get totalCount(): number{
+    return this.allTasks.length;
+  }
+
   setFilter(filter: "all" | "active" | "completed"): void {
     this.filter = filter;
     this.selectedIds.clear();
+    this.loadTasks();
   }
 
   toggleTask(id: number): void {
@@ -158,4 +166,59 @@ export class TaskList {
   showCompleted = false;
 
   toggleShowCompleted(): void {}
+
+  //Edit Task
+
+  taskToEdit: Task | null = null;
+
+  openEdit(task: Task): void {
+    this.taskToEdit = {...task};
+  }
+
+  cancelEdit(): void{
+    this.taskToEdit = null;
+  }
+
+  submitEdit(): void{
+    if (!this.taskToEdit) return;
+    const edited = this.taskToEdit;
+    this.taskService.updateTask(
+      edited.id,
+      edited.title,
+      edited.description,
+      edited.priority
+    ).subscribe(()=> {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Task Updated',
+        detail: `"${edited.title}" has been updated`,
+        life: 4000
+      });
+      this.taskToEdit = null;
+      this.cdr.detectChanges();
+    });
+  }
+
+  bulkComplete(): void{
+    const count = this.selectedIds.size;
+    const markAs = this.filter === 'completed' ? false : true;
+    let completed = 0;
+    this.selectedIds.forEach((id) => {
+      this.taskService.toggleTask(id, markAs).subscribe(() => {
+        completed++;
+        if (completed === count){
+          this.selectedIds.clear();
+          this.selectedIds = new Set(this.selectedIds);
+          this.loadTasks();
+          this.messageService.add({
+            severity: 'success',
+            summary: markAs ? 'Tasks Completed' : 'Tasks Reopened',
+            detail: `${count} task${count !== 1 ? 's' : ''} marked as ${markAs ? 'complete' : 'incomplete'}`,
+            life: 4000
+          });
+        }
+      });
+    });
+  }
+
 }

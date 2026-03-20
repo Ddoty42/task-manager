@@ -68,7 +68,7 @@ export class TaskForm {
     this.cdr.detectChanges();
     });
 
-    
+
     // reset form
     this.title ="";
     this.description="";
@@ -76,8 +76,8 @@ export class TaskForm {
     this.isOpen = false;
   }
 
-priorityOptions: ("low" | "medium" | "high")[] = ["low", "medium", "high"]; 
-  
+priorityOptions: ("low" | "medium" | "high")[] = ["low", "medium", "high"];
+
 setPriority(priority: "low" | "medium" | "high"): void{   //Simple setter, just like in java, sets the filter options
     this.priority = priority;
   }
@@ -102,9 +102,4 @@ isDuplicate(): boolean {
   return this.existingTasks.some(
     (t) => t.title.toLowerCase() === this.title.trim().toLowerCase());
 }
-
-
-
-  
-  
 }
