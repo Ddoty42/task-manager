@@ -17,6 +17,8 @@ export class TaskForm {
   description = "";
   @ViewChild('titleInput') titleInput!: ElementRef;
   priority: Task["priority"] = "medium";
+  taskType: Task['taskType'] = 'other';
+  taskTypeOptions: ("work" | "personal" | "other")[] = ["work", "personal", "other"]
   isOpen = false;
   existingTasks: Task[] = [];
 
@@ -57,7 +59,8 @@ export class TaskForm {
     this.taskService.addTask(
       taskTitle,
       this.description.trim(),
-      this.priority
+      this.priority,
+      this.taskType
     ).subscribe(() => {
       this.messageService.add({
       severity: 'success',
@@ -73,6 +76,7 @@ export class TaskForm {
     this.title ="";
     this.description="";
     this.priority="medium";
+    this.taskType='other';
     this.isOpen = false;
   }
 

@@ -5,8 +5,10 @@
       "title": "Add Settings",
       "description": "Add settings icon that allows the user to change font, change language, and set theme, dark mode; light mode",
       "priority": "medium",
-      "completed": false,
-      "createdAt": "2026-03-13T01:06:48.073Z"
+      "completed": true,
+      "createdAt": "2026-03-13T01:06:48.073Z",
+      "completedAt": "2026-03-20T15:40:54.699Z",
+      "taskType": "other"
     },
     {
       "id": "6c98",
@@ -14,7 +16,9 @@
       "description": "Add a type, Housework, Homework, Work, Personal, Other",
       "priority": "medium",
       "completed": false,
-      "createdAt": "2026-03-13T01:08:31.299Z"
+      "createdAt": "2026-03-13T01:08:31.299Z",
+      "taskType": "personal",
+      "completedAt": null
     },
     {
       "id": "12a4",
@@ -22,7 +26,9 @@
       "description": "Add the ability to edit a task\n-add a pencil next to the delete icon\n-pops Edit Task modal\n-Success toast message when edit is successful\n-Changes save without refreshing",
       "priority": "high",
       "completed": true,
-      "createdAt": "2026-03-13T01:10:10.379Z"
+      "createdAt": "2026-03-13T01:10:10.379Z",
+      "completedAt": "2026-03-19T15:40:54.699Z",
+      "taskType": "other"
     },
     {
       "id": "24dc",
@@ -30,15 +36,19 @@
       "description": "Add autofocus when opening the new task modal",
       "priority": "medium",
       "completed": true,
-      "createdAt": "2026-03-13T01:11:14.498Z"
+      "createdAt": "2026-03-13T01:11:14.498Z",
+      "completedAt": "2026-03-13T15:40:54.699Z",
+      "taskType": "other"
     },
     {
       "id": "602d",
       "title": "Add Select All For Completion",
       "description": "Add A Mark As Complete option alongside the Delete",
       "priority": "high",
-      "completed": false,
-      "createdAt": "2026-03-13T01:11:44.745Z"
+      "completed": true,
+      "createdAt": "2026-03-13T01:11:44.745Z",
+      "completedAt": "2026-03-20T15:40:54.699Z",
+      "taskType": "other"
     },
     {
       "id": "244f",
@@ -46,7 +56,9 @@
       "description": "Prevent the user from using special characters in the task title, allowed in the description",
       "priority": "low",
       "completed": true,
-      "createdAt": "2026-03-13T01:12:20.858Z"
+      "createdAt": "2026-03-13T01:12:20.858Z",
+      "completedAt": "2026-03-13T15:40:54.699Z",
+      "taskType": "other"
     },
     {
       "id": "0d00",
@@ -54,7 +66,9 @@
       "description": "Create a delete confirmation so the user can confirm/deny deleting a task",
       "priority": "high",
       "completed": true,
-      "createdAt": "2026-03-13T01:14:38.700Z"
+      "createdAt": "2026-03-13T01:14:38.700Z",
+      "completedAt": "2026-03-13T15:40:54.699Z",
+      "taskType": "other"
     },
     {
       "id": "c0e4",
@@ -62,7 +76,8 @@
       "description": "Add date filter, priority filter, type filter",
       "priority": "low",
       "completed": false,
-      "createdAt": "2026-03-13T01:17:51.112Z"
+      "createdAt": "2026-03-13T01:17:51.112Z",
+      "taskType": "personal"
     },
     {
       "id": "3acb",
@@ -70,7 +85,9 @@
       "description": "Modal is exiting when clicking in the modal, add .stopPropagation()",
       "priority": "high",
       "completed": true,
-      "createdAt": "2026-03-13T01:19:38.330Z"
+      "createdAt": "2026-03-13T01:19:38.330Z",
+      "completedAt": "2026-03-13T15:40:54.699Z",
+      "taskType": "other"
     },
     {
       "id": "abd1",
@@ -78,15 +95,19 @@
       "description": "Use prime.ng toast messages on successful add, deletion",
       "priority": "high",
       "completed": true,
-      "createdAt": "2026-03-13T01:20:11.894Z"
+      "createdAt": "2026-03-13T01:20:11.894Z",
+      "completedAt": "2026-03-13T15:40:54.699Z",
+      "taskType": "other"
     },
     {
       "id": "53ab",
       "title": "Add Selection on task",
       "description": "Remove the selector bubble, allow user to select anywhere in the card",
       "priority": "medium",
-      "completed": false,
-      "createdAt": "2026-03-13T01:21:07.758Z"
+      "completed": true,
+      "createdAt": "2026-03-13T01:21:07.758Z",
+      "completedAt": "2026-03-19T15:40:54.699Z",
+      "taskType": "other"
     },
     {
       "id": "d124",
@@ -94,15 +115,18 @@
       "description": "Add the ability to drag and drop tasks",
       "priority": "low",
       "completed": false,
-      "createdAt": "2026-03-13T01:22:33.179Z"
+      "createdAt": "2026-03-13T01:22:33.179Z",
+      "taskType": "other"
     },
     {
       "id": "2d0c",
-      "title": "Fix Clicking outside modal",
-      "description": "Fix clicking outside of modal to exit, force user to hit cancel or the X",
+      "title": "[NOT NEEDED] Fix Clicking outside modal",
+      "description": "Fix clicking outside of modal to exit, force user to hit cancel or the X\nEdit: This is actually a nice accessibility feature",
       "priority": "medium",
-      "completed": false,
-      "createdAt": "2026-03-13T01:27:15.184Z"
+      "completed": true,
+      "createdAt": "2026-03-13T01:27:15.184Z",
+      "completedAt": "2026-03-20T15:40:54.699Z",
+      "taskType": "other"
     },
     {
       "id": "3f13",
@@ -110,7 +134,8 @@
       "description": "Force user to mark the completed task as incomplete before deleting, send red toast message that states \"ERROR: Mark task as incomplete before deleting\" pop message when user hits the delete can, or if a multi selection has a complete task within it",
       "priority": "low",
       "completed": false,
-      "createdAt": "2026-03-13T01:30:36.256Z"
+      "createdAt": "2026-03-13T01:30:36.256Z",
+      "taskType": "other"
     },
     {
       "id": "876e",
@@ -118,7 +143,8 @@
       "description": "Add ASP.NET backend, implement security, allow users to have their own tasks",
       "priority": "low",
       "completed": false,
-      "createdAt": "2026-03-13T01:54:09.882Z"
+      "createdAt": "2026-03-13T01:54:09.882Z",
+      "taskType": "other"
     },
     {
       "id": "fc09",
@@ -126,7 +152,9 @@
       "description": "User can shrink description box too much",
       "priority": "medium",
       "completed": true,
-      "createdAt": "2026-03-13T02:15:08.926Z"
+      "createdAt": "2026-03-13T02:15:08.926Z",
+      "completedAt": "2026-03-13T15:40:54.699Z",
+      "taskType": "other"
     },
     {
       "id": "395e",
@@ -134,7 +162,9 @@
       "description": "When adding a task, refresh the list",
       "priority": "medium",
       "completed": true,
-      "createdAt": "2026-03-13T02:41:34.022Z"
+      "createdAt": "2026-03-13T02:41:34.022Z",
+      "completedAt": "2026-03-13T15:40:54.699Z",
+      "taskType": "other"
     },
     {
       "id": "50f4",
@@ -142,7 +172,19 @@
       "description": "After marking complete and switching tabs, the tasks are being reverted back to incomplete\n\nSolution: Add loadTasks(); in setFilter in task-list.html",
       "priority": "medium",
       "completed": true,
-      "createdAt": "2026-03-20T13:50:53.326Z"
+      "createdAt": "2026-03-20T13:50:53.326Z",
+      "completedAt": "2026-03-20T15:40:54.699Z",
+      "taskType": "other"
+    },
+    {
+      "id": "9676",
+      "title": "Sort ALL page",
+      "description": "Sort the all page to show Incomplete tasks followed by completed tasks",
+      "priority": "medium",
+      "completed": true,
+      "createdAt": "2026-03-20T15:53:50.195Z",
+      "completedAt": "2026-03-20T15:53:58.707Z",
+      "taskType": "other"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

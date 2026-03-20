@@ -16,11 +16,12 @@ export class TaskService {
     return this.http.get<Task[]>(this.apiUrl);
   }
 
-  addTask(title: string, description: string, priority: Task['priority']): Observable<Task> {
+  addTask(title: string, description: string, priority: Task['priority'], taskType: Task['taskType']): Observable<Task> {
   const task = {
     title,
     description,
     priority,
+    taskType,
     completed: false,
     createdAt: new Date().toISOString(),
   };
@@ -30,7 +31,9 @@ export class TaskService {
 }
 
 toggleTask(id: number, completed: boolean): Observable<Task> {
-  return this.http.patch<Task>(`${this.apiUrl}/${id}`, { completed }).pipe(
+  return this.http.patch<Task>(`${this.apiUrl}/${id}`, {
+    completed,
+  completedAt: completed ? new Date().toISOString() : null }).pipe(
     tap(() => this.tasksChanged.next())
   );
 }
@@ -41,9 +44,11 @@ deleteTask(id: number): Observable<void> {
   );
 }
 
-updateTask(id: number, title: string, description: string, priority: Task['priority']): Observable<Task>{
-    return this.http.patch<Task>(`${this.apiUrl}/${id}`, {title, description, priority}).pipe(tap(() => this.tasksChanged.next())
+updateTask(id: number, title: string, description: string, priority: Task['priority'], taskType: Task['taskType']): Observable<Task>{
+    return this.http.patch<Task>(`${this.apiUrl}/${id}`, {title, description,  priority, taskType}).pipe(tap(() => this.tasksChanged.next())
     );
 }
+
+
 
 }

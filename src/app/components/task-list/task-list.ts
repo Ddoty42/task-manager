@@ -19,6 +19,7 @@ export class TaskList {
   taskToDelete: Task | null = null;
 
   priorityOptions: ("low" | "medium" | "high")[] = ["low", "medium", "high"];
+  taskTypeOptions: ("work" | "personal" | "other")[] = ["work", "personal", "other"]
 
   constructor(
     private taskService: TaskService,
@@ -43,9 +44,18 @@ export class TaskList {
       case "active":
         return this.allTasks.filter((t) => !t.completed);
       case "completed":
-        return this.allTasks.filter((t) => t.completed);
+        return this.allTasks.filter((t) => t.completed)
+          .slice()
+          .sort((a,b) => {
+            const dateA = a.completedAt? new Date(a.completedAt).getTime() : 0;
+            const dateB = b.completedAt ? new Date(b.completedAt).getTime() : 0;
+            return dateB - dateA;
+          });
       default:
-        return this.allTasks;
+        return this.allTasks.slice().sort((a,b) => {
+          if (a.completed === b.completed) return 0;
+          return a.completed ? 1 : -1;
+        });
     }
   }
 
@@ -67,6 +77,7 @@ export class TaskList {
     const task = this.allTasks.find((t) => t.id === id);
     if (task) {
       this.taskService.toggleTask(id, !task.completed).subscribe(() => {
+        this.cdr.detectChanges();
         this.loadTasks();
       });
     }
@@ -141,6 +152,8 @@ export class TaskList {
     return this.selectedIds.size > 0;
   }
 
+  // BULK DELETE
+
   bulkDelete(): void {
     const count = this.selectedIds.size;
     let completed = 0;
@@ -151,6 +164,7 @@ export class TaskList {
           this.selectedIds.clear();
           this.selectedIds = new Set(this.selectedIds);
           this.loadTasks();
+          this.cdr.detectChanges();
           this.messageService.add({
             severity: 'success',
             summary: 'Deleted',
@@ -186,7 +200,8 @@ export class TaskList {
       edited.id,
       edited.title,
       edited.description,
-      edited.priority
+      edited.priority,
+      edited.taskType
     ).subscribe(()=> {
       this.messageService.add({
         severity: 'success',
@@ -199,6 +214,8 @@ export class TaskList {
     });
   }
 
+  //BULK COMPLETE
+
   bulkComplete(): void{
     const count = this.selectedIds.size;
     const markAs = this.filter === 'completed' ? false : true;
@@ -210,6 +227,7 @@ export class TaskList {
           this.selectedIds.clear();
           this.selectedIds = new Set(this.selectedIds);
           this.loadTasks();
+          this.cdr.detectChanges();
           this.messageService.add({
             severity: 'success',
             summary: markAs ? 'Tasks Completed' : 'Tasks Reopened',
@@ -219,6 +237,20 @@ export class TaskList {
         }
       });
     });
+  }
+
+  //Task Type Code
+  getTaskTypeClasses(taskType: string): string {
+    switch (taskType) {
+      case 'work':
+        return 'bg-blue-100 text-blue-700 border-blue-200';
+      case 'personal':
+        return 'bg-purple-100 text-purple-700 border-purple-200';
+      case 'other':
+        return 'bg-gray-100 text-gray-700 border-gray-200';
+      default:
+        return 'bg-gray-100 text-gray-700 border-gray-200';
+    }
   }
 
 }
