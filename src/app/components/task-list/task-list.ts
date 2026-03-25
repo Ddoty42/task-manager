@@ -3,11 +3,11 @@ import { CommonModule, TitleCasePipe } from '@angular/common';
 import { Task } from '../../models/task';
 import { TaskService } from '../../services/task';
 import { MessageService } from 'primeng/api';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-task-list',
-  imports: [CommonModule, FormsModule, TitleCasePipe],
+  imports: [CommonModule, ReactiveFormsModule, TitleCasePipe],
   templateUrl: './task-list.html',
   styleUrl: './task-list.css',
 })
@@ -21,14 +21,24 @@ export class TaskList {
   priorityOptions: ("low" | "medium" | "high")[] = ["low", "medium", "high"];
   taskTypeOptions: ("work" | "personal" | "other")[] = ["work", "personal", "other"]
 
+  editForm: FormGroup;
+
   constructor(
+    private fb: FormBuilder,
     private taskService: TaskService,
     private messageService: MessageService,
     private cdr: ChangeDetectorRef
   ) {
+    this.editForm = this.fb.group({
+      title: [''],
+      description: [''],
+      priority: ['medium'],
+      taskType: ['other']
+    });
     this.loadTasks();
     this.taskService.tasksChanged.subscribe(() => {
       this.loadTasks();
+      this.cdr.detectChanges();
     });
   }
 
@@ -189,30 +199,37 @@ export class TaskList {
 
   openEdit(task: Task): void {
     this.taskToEdit = {...task};
+    this.editForm.patchValue({
+      title: task.title,
+      description: task.description,
+      priority: task.priority,
+      taskType: task.taskType
+    });
   }
 
   cancelEdit(): void{
     this.taskToEdit = null;
+    this.editForm.reset();
   }
 
   submitEdit(): void{
     if (!this.taskToEdit) return;
-    const edited = this.taskToEdit;
+    const {title, description, priority, taskType } = this.editForm.value;
+    const id = this.taskToEdit.id;
+
     this.taskService.updateTask(
-      edited.id,
-      edited.title,
-      edited.description,
-      edited.priority,
-      edited.taskType
+      id, title, description, priority, taskType
     ).subscribe(()=> {
       this.messageService.add({
         severity: 'success',
         summary: 'Task Updated',
-        detail: `"${edited.title}" has been updated`,
+        detail: `"${title}" has been updated`,
         life: 4000
       });
       this.taskToEdit = null;
       this.cdr.detectChanges();
+      this.editForm.reset();
+
     });
   }
 

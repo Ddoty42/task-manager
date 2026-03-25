@@ -73,7 +73,7 @@
     {
       "id": "c0e4",
       "title": "Add Filters",
-      "description": "Add date filter, priority filter, type filter",
+      "description": "Add date filter, priority filter, type filters",
       "priority": "low",
       "completed": false,
       "createdAt": "2026-03-13T01:17:51.112Z",
@@ -186,6 +186,16 @@
       "createdAt": "2026-03-20T15:53:50.195Z",
       "completedAt": "2026-03-20T15:53:58.707Z",
       "taskType": "other"
+    },
+    {
+      "id": "d1c7",
+      "title": "Change ngForms to ReactiveForms",
+      "description": "Change task-list and task-form to use Reactive Forms",
+      "priority": "high",
+      "taskType": "personal",
+      "completed": true,
+      "createdAt": "2026-03-25T18:45:10.478Z",
+      "completedAt": "2026-03-25T18:45:15.964Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
