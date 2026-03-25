@@ -73,7 +73,7 @@
     {
       "id": "c0e4",
       "title": "Add Filters",
-      "description": "Add date filter, priority filter, type filter",
+      "description": "Add date filter, priority filter, type filters",
       "priority": "low",
       "completed": false,
       "createdAt": "2026-03-13T01:17:51.112Z",
